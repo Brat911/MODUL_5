@@ -13,14 +13,14 @@ CREATE TABLE [coins]   (
 		[par]						integer NOT NULL,
 		[obverse]					varchar (20) unique,
 		[revers]					varchar (20) NOT NULL,
-		[diameter_mm]				float NOT NULL ,
-		[thickness_mm]				float NOT NULL,
-		[start_coinage]				date ,
-		[end_coinage]		        date ,
+		[diameter_mm]					float NOT NULL ,
+		[thickness_mm]					float NOT NULL,
+		[start_coinage]					date ,
+		[end_coinage]		        		date ,
 		[putINrun]					date ,
-	    [numOFrun]					integer ,
+	   	 [numOFrun]					integer ,
 		[sumOF_UAH]					integer,
-		[inserted_date]				date  ,
+		[inserted_date]					date  ,
 			
 )
 GO
@@ -29,28 +29,28 @@ GO
 USE YURII_BRATYUK
 GO
 CREATE TABLE coinage (
-			[id]						integer IDENTITY(1,1) ,
-			[coin_id]					integer NOT NULL,
-			[mint_city]					varchar (20) NOT NULL,
-			[coinage_date]				date   NOT NULL,
-			[color]						varchar(20) NOT NULL,
-			[material]					varchar (20) NOT NULL,
-			[weight_g]					float NOT NULL ,
-			[coin_edges]				varchar(20) NOT NULL,
-			[amount]					integer NOT NULL ,
-			[inserted_date]				date  ,
-			[updated_date]				date  ,
+		[id]						integer IDENTITY(1,1) ,
+		[coin_id]					integer NOT NULL,
+		[mint_city]					varchar (20) NOT NULL,
+		[coinage_date]					date   NOT NULL,
+		[color]						varchar(20) NOT NULL,
+		[material]					varchar (20) NOT NULL,
+		[weight_g]					float NOT NULL ,
+		[coin_edges]					varchar(20) NOT NULL,
+		[amount]					integer NOT NULL ,
+		[inserted_date]					date  ,
+		[updated_date]					date  ,
 		 )
 GO
 
 
 CREATE TABLE log_check (
-			[id]				integer IDENTITY(1,1) ,
-			[date]				date,
-			[operations]		varchar (8) NOT NULL,
-			[old_value]			varchar (20) NOT NULL,
-			[new_value]			varchar (20) NOT NULL,
-         )
+		[id]				integer IDENTITY(1,1) ,
+		[date]				date,
+		[operations]			varchar (8) NOT NULL,
+		[old_value]			varchar (20) NOT NULL,
+		[new_value]			varchar (20) NOT NULL,
+        	 )
 GO
 
 
@@ -177,17 +177,18 @@ AFTER UPDATE
 AS 
 BEGIN
 UPDATE coinage
-set updated_date = getdate() from coinage inner join inserted on coinage.id=inserted.id where coinage.id=inserted.id      ------------- апдейтить колонку updated_date
+set updated_date = getdate() 								
+from coinage inner join inserted on coinage.id=inserted.id where coinage.id=inserted.id     ------------- updated_date 
 INSERT INTO log_check ([date],[operations],[old_value],[new_value])                                                       ----------------------  Insert into Log
 SELECT	getdate(), 'U', deleted.material, inserted.material FROM inserted JOIN deleted ON inserted.id = deleted.id
 END
 
 
 
-update coinage SET material = 'wood' where coin_id = 4 and coinage_date = '1992-11-28'               --------------------- Перевірка роботи TRIGGER AFTER UPDATE 
+update coinage SET material = 'wood' where coin_id = 4 and coinage_date = '1992-11-28'               ---------------------CHECK TRIGGER AFTER UPDATE 
 
 
-select * from log_check              ------- лог данні по апдейту
+select * from log_check              
 select * from coins
 select * from coinage
 
@@ -203,21 +204,21 @@ SELECT [par],[obverse],[revers],[diameter_mm],[thickness_mm],[start_coinage],[en
 CREATE VIEW coinage_v AS 
 SELECT [coin_id],[mint_city],[coinage_date],[color],[material],[weight_g],[coin_edges] FROM coinage WHERE weight_g < 2 with check option
 
-insert into coins_v values (5,'qwe','qweqr',2,3,'1992-12-20','1992-12-20')     -------------------------------------------- check option не пускає інсерт
+insert into coins_v values (5,'qwe','qweqr',2,3,'1992-12-20','1992-12-20')     -------------------------------------------- check option (NOT INSERT)
 
 SELECT * FROM coins_v
 SELECT * FROM coinage_v
 
 
 
---------------- Перевірка роботи CONSTRAINT
------Нульова або відємна вага CHECK "weight_g_chk"
+---------------CHECK CONSTRAINT
+-----  CHECK "weight_g_chk"
 
 INSERT INTO coinage ([coin_id],[mint_city],[coinage_date],[color],[material],[weight_g],[coin_edges],[amount],[inserted_date])	
 	VALUES (1,'kyiv', '1992-12-20', 'silver', 'steel', 0, 'ribbet' , 610000, getdate());	
 
 
--------Інсерти одинакових ключів UNIQUE KEY
+-------CHECK UNIQUE KEY
 
 INSERT INTO coins ([par],[obverse],[revers],[diameter_mm],[thickness_mm],[start_coinage],[end_coinage],[putINrun],[numOFrun],[sumOF_UAH],[inserted_date])
 	VALUES (1, '1','emblem', 16.0, 1.2, '1992-12-20', '2009-08-17', '1992-12-25' , 222600000, 2226000, getdate());
