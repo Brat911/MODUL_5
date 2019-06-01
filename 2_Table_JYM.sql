@@ -4,18 +4,18 @@ GO
 
 CREATE TABLE [jym]   
 (
-				[id]						integer IDENTITY(1,1),
+				[id]					integer IDENTITY(1,1),
 				[first_name]				varchar (20),
-				[last_name]					varchar (20),
+				[last_name]				varchar (20),
 				[date_of_birth]				date,
-				[sex]						varchar (20),
+				[sex]					varchar (20),
 				[initial_weight]			integer,
-				[body_par]					varchar (20),
-				[body_type]					varchar (20),
-				[target]					varchar (20),
-				[city]						varchar (20),
-				[street]					varchar (20),
-				[phone_num]					varchar (20),
+				[body_par]				varchar (20),
+				[body_type]				varchar (20),
+				[target]				varchar (20),
+				[city]					varchar (20),
+				[street]				varchar (20),
+				[phone_num]				varchar (20),
 				[subscription]				varchar (20),
 				[inserted_date]				date,
 )
@@ -23,22 +23,22 @@ GO
 
 CREATE TABLE [jym_log]   
 (
-				[id]						integer IDENTITY(1,1),
+				[id]					integer IDENTITY(1,1),
 				[first_name]				varchar (20),
-				[last_name]					varchar (20),
+				[last_name]				varchar (20),
 				[date_of_birth]				date,
-				[sex]						varchar (20),
+				[sex]					varchar (20),
 				[initial_weight]			integer,
-				[body_par]					varchar (20),
-				[body_type]					varchar (20),
-				[target]					varchar (20),
-				[city]						varchar (20),
-				[street]					varchar (20),
-				[phone_num]					varchar (20),
+				[body_par]				varchar (20),
+				[body_type]				varchar (20),
+				[target]				varchar (20),
+				[city]					varchar (20),
+				[street]				varchar (20),
+				[phone_num]				varchar (20),
 				[subscription]				varchar (20),
 				[inserted_date]				date,
-				[type_of_operations]		varchar (20), 
-				[date_of_operations]		date,
+				[type_of_operations]			varchar (20), 
+				[date_of_operations]			date,
 )
 GO
 
@@ -48,14 +48,14 @@ CREATE TABLE [subscription]
 				[name]						varchar (20) NOT NULL,
 				[type]						varchar (20) NOT NULL,
 				[validity]					varchar (20) NOT NULL,
-				[visit_time]				varchar (20) NOT NULL,
+				[visit_time]					varchar (20) NOT NULL,
 				[jym]						varchar (20) NOT NULL,
 				[pool]						varchar (20) NOT NULL,
 				[spa]						varchar (20) NOT NULL,
 				[crossfit]					varchar (20) NOT NULL,
 				[yoga]						varchar (20) NOT NULL,
 				[fitnees]					varchar (20) NOT NULL,
-				[inserted_date]				date  ,		
+				[inserted_date]					date  ,		
 )
 GO
 
@@ -187,7 +187,7 @@ INSERT INTO jym ([first_name],[last_name],[date_of_birth],[sex],[initial_weight]
 
 update jym set city = 'Yoyoland' where city = 'New Somewhere'                   ------------------ UPDATE CHECK
 
-delete from jym where id = 2													------------------ DELETE CHECK
+delete from jym where id = 2							------------------ DELETE CHECK
 
 
 	select * from subscription
@@ -209,6 +209,6 @@ go
 
 	select * from coins_v
 	select * from coinage_v
-	select * from qq
+	
 
 	SELECT * FROM syn_jym JOIN syn_sub on syn_jym.subscription=syn_sub.name   ----------- synonym script
