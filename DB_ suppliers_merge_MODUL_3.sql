@@ -10,7 +10,7 @@ GO
 
 CREATE TABLE [suppliers]   (
 
-		[supplierid]				integer PRIMARY KEY,
+		[supplierid]					integer PRIMARY KEY,
 		[name]						varchar (20),
 		[rating]					integer,
 		[city]						varchar (20),
@@ -31,7 +31,7 @@ GO
 
 CREATE TABLE [products]   (
 
-		[productid]				integer PRIMARY KEY,
+		[productid]					integer PRIMARY KEY,
 		[name]						varchar (20),
 		[city]						varchar (20),
 )
@@ -39,9 +39,9 @@ GO
 
 
 CREATE TABLE [supplies]   (
-		[supplierid]				integer FOREIGN KEY REFERENCES suppliers(supplierid),
+		[supplierid]					integer FOREIGN KEY REFERENCES suppliers(supplierid),
 		[detailid]					integer FOREIGN KEY REFERENCES details(detailid),
-		[productid]				integer FOREIGN KEY REFERENCES products(productid),
+		[productid]					integer FOREIGN KEY REFERENCES products(productid),
 		[quantity]					integer ,
 )
 GO
@@ -50,15 +50,15 @@ GO
 USE YURII_BRATYUK
 GO
 
-INSERT INTO suppliers VALUES (1,	'Smith',	20,	'London'),
+INSERT INTO suppliers VALUES 				 (1,	'Smith',	20,	'London'),
 							 (2,	'Jonth',	10,	'Paris'),
 							 (3,	'Blacke',	30,	'Paris'),
 							 (4,	'Clarck',	20,	'London'),
 							 (5,	'Adams',	30,	'Athens');
 
 
-INSERT INTO details VALUES (1, 'Screw',		'Red',		12,	'London'),
-						   (2, 'Bolt',			'Green',	17,	'Paris'),
+INSERT INTO details VALUES 			   (1, 'Screw',		'Red',		12,	'London'),
+						   (2, 'Bolt',		'Green',	17,	'Paris'),
 						   (3, 'Male-screw',	'Blue',		17,	'Roma'),
 						   (4, 'Male-screw',	'Red',		14,	'London'),
 						   (5, 'Whell',		'Blue',		12,	'Paris'),
@@ -66,17 +66,17 @@ INSERT INTO details VALUES (1, 'Screw',		'Red',		12,	'London'),
 						
 
 
-INSERT INTO products VALUES (1, 'HDD',			'Paris'),
+INSERT INTO products VALUES 				(1, 'HDD',		'Paris'),
 							(2, 'Perforator',	'Roma'),
 							(3, 'Reader',		'Athens'),
 							(4, 'Printer',		'Athens'),
-							(5, 'FDD',			'London'),
+							(5, 'FDD',		'London'),
 							(6, 'Terminal',		'Oslo'),
 							(7, 'Ribbon',		'London');
 
 
 
-INSERT INTO supplies VALUES (1,	1,	1,	200),
+INSERT INTO supplies VALUES 				(1,	1,	1,	200),
 							(1,	1,	4,	700),
 							(2,	3,	1,	400),
 							(2,	3,	2,	200),
@@ -179,7 +179,7 @@ where details.color = 'Red')
 
   -------------------------8
   INSERT INTO suppliers (supplierid,name,rating,city)
-   VALUES (10,'”‡ÈÚ',DEFAULT,'Õ¸˛-…ÓÍ')
+   VALUES (10,'√ì√†√©√≤',DEFAULT,'√ç√º√æ-√â√Æ√∞√™')
 
 
 
@@ -236,7 +236,7 @@ FROM  suppliers LEFT JOIN supplies on supplies.supplierid=suppliers.supplierid  
 
 
 ----------------------- 15
-INSERT INTO suppliers VALUES (6,	'Ben',		60,		'Lviv'),
+INSERT INTO suppliers VALUES				 (6,	'Ben',	    60,		'Lviv'),
 							 (8,	'Arthur',   70,		'Rivne');
 
 
