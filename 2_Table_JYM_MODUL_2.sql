@@ -70,10 +70,10 @@ GO
 ALTER TABLE [jym] ADD 
 	CONSTRAINT PK_jym PRIMARY KEY  NONCLUSTERED ([id]),
 	CONSTRAINT date_of_birth_chk check (date_of_birth < '2001-01-01');
-	
+GO	
 ALTER TABLE [subscription] ADD 
 	CONSTRAINT PK_subscription PRIMARY KEY  NONCLUSTERED ([id]);
-
+GO
 
 
 	----------------------- TRIGGER FOR INSERT on Jym--------------------------------
@@ -163,7 +163,7 @@ INSERT INTO jym ([first_name],[last_name],[date_of_birth],[sex],[initial_weight]
 	VALUES ('Tomas','Edison', '1890-11-13','male',120.5,'110*90*120','Endomorph','slim','yoyoland','fine-street','+380961145632','ClassicM',GETDATE() )
 INSERT INTO jym ([first_name],[last_name],[date_of_birth],[sex],[initial_weight],[body_par],[body_type],[target],[city],[street],[phone_num],[subscription],[inserted_date])
 	VALUES ('Deni','Mahao', '1990-04-29','male',65.5,'84*95*100','Ectomorph','muscle','New Somewhere','Glory-street','+380734435388','Prem',GETDATE() )
-
+GO
 
 
 
@@ -179,7 +179,7 @@ INSERT INTO subscription ([name],[type],[validity],[visit_time],[jym],[pool],[sp
 	VALUES ('Lux','full_fit','2m','07:00-23:00','y','y','n','y','y','y',GETDATE())
 INSERT INTO subscription ([name],[type],[validity],[visit_time],[jym],[pool],[spa],[crossfit],[yoga],[fitnees],[inserted_date])
 	VALUES ('Prem-Lux','full_fit','3m','07:00-23:00','y','y','y','y','y','y',GETDATE())
-
+GO
 
 
 	------------------------TRIGERS CHECK------------------------------------
@@ -189,11 +189,13 @@ INSERT INTO jym ([first_name],[last_name],[date_of_birth],[sex],[initial_weight]
 INSERT INTO jym ([first_name],[last_name],[date_of_birth],[sex],[initial_weight],[body_par],[body_type],[target],[city],[street],[phone_num],[subscription],[inserted_date])
 	VALUES ('Deni','Mahao', '1990-04-29','male',65.5,'84*95*100','Ectomorph','muscle','New Somewhere','Glory-street','+380734435388','Prem',GETDATE() )
 
+GO
 
 update jym set city = 'Yoyoland' where city = 'New Somewhere'                   ------------------ UPDATE CHECK
+go
 
 delete from jym where id = 2							------------------ DELETE CHECK
-
+go
 
 	select * from subscription
 	select * from jym
@@ -216,4 +218,5 @@ go
 	select * from coinage_v
 	
 
-	SELECT * FROM syn_jym JOIN syn_sub on syn_jym.subscription=syn_sub.name   ----------- synonym check script
+SELECT * FROM syn_jym JOIN syn_sub on syn_jym.subscription=syn_sub.name   ----------- synonym check script
+	
