@@ -2,6 +2,10 @@ USE YURII_BRATYUK
 GO
 --drop table [jym]  drop table [subscription] drop table [jym_log]  
 
+
+
+-------- TABLE CREATION. Part 2 ---------------------
+
 CREATE TABLE [jym]   
 (
 				[id]					integer IDENTITY(1,1),
@@ -74,7 +78,7 @@ ALTER TABLE [subscription] ADD
 
 	----------------------- TRIGGER FOR INSERT on Jym--------------------------------
 
-
+DROP trigger if exists I_jym
 CREATE TRIGGER I_jym ON jym 
 AFTER INSERT
 AS
@@ -100,6 +104,7 @@ END
 
 	----------------------- TRIGGER FOR UPDATE on Jym--------------------------------
 
+DROP trigger if exists U_jym
 CREATE TRIGGER U_jym ON jym
 AFTER UPDATE
 AS
@@ -128,7 +133,7 @@ END
 
 ------------------------- TRIGGER FOR DELETE on Jym--------------------------------
 
-
+DROP trigger if exists D_jym
 CREATE TRIGGER D_jym ON jym
 AFTER DELETE 
 AS 
@@ -211,4 +216,4 @@ go
 	select * from coinage_v
 	
 
-	SELECT * FROM syn_jym JOIN syn_sub on syn_jym.subscription=syn_sub.name   ----------- synonym script
+	SELECT * FROM syn_jym JOIN syn_sub on syn_jym.subscription=syn_sub.name   ----------- synonym check script
