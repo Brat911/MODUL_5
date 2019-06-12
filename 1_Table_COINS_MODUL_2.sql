@@ -199,12 +199,13 @@ select * from coinage
 
 CREATE VIEW coins_v AS 
 SELECT [par],[obverse],[revers],[diameter_mm],[thickness_mm],[start_coinage],[end_coinage] FROM coins WHERE par = 1 with check option
-
+GO
 
 CREATE VIEW coinage_v AS 
 SELECT [coin_id],[mint_city],[coinage_date],[color],[material],[weight_g],[coin_edges] FROM coinage WHERE weight_g < 2 with check option
+GO
 
-insert into coins_v values (5,'qwe','qweqr',2,3,'1992-12-20','1992-12-20')     -------------------------------------------- check option (NOT INSERT)
+insert into coins_v values (5,'qwe','qweqr',2,3,'1992-12-20','1992-12-20')     ------------------------------- check option (NOT INSERT)
 
 SELECT * FROM coins_v
 SELECT * FROM coinage_v
@@ -212,14 +213,16 @@ SELECT * FROM coinage_v
 
 
 ---------------CHECK CONSTRAINT
+
 -----  CHECK "weight_g_chk"
 
 INSERT INTO coinage ([coin_id],[mint_city],[coinage_date],[color],[material],[weight_g],[coin_edges],[amount],[inserted_date])	
 	VALUES (1,'kyiv', '1992-12-20', 'silver', 'steel', 0, 'ribbet' , 610000, getdate());	
-
+GO
 
 -------CHECK UNIQUE KEY
 
 INSERT INTO coins ([par],[obverse],[revers],[diameter_mm],[thickness_mm],[start_coinage],[end_coinage],[putINrun],[numOFrun],[sumOF_UAH],[inserted_date])
 	VALUES (1, '1','emblem', 16.0, 1.2, '1992-12-20', '2009-08-17', '1992-12-25' , 222600000, 2226000, getdate());
 
+GO
